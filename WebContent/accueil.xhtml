@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Page d'accueil du site</title>
+</h:head> 
+<body> 
+
+	<!-- 
+		> vérif de la présence de l'attribut 'user_login' dans la session
+		  sauvegardé lors de la connexion du conseiller.
+		
+		> vérif via l'attribut 'rendered' qui permet de conditionner l'affichage d'un élement JSF
+	 -->
+	
+	<h:form rendered="#{not empty user_login}" style="float: right;">
+		<h:panelGrid>
+		
+			<f:facet name="footer">
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+	<!-- ================================================================= -->
+	<!-- ================= Affichage des messages ======================== -->
+	<!-- ================================================================= -->	
+	<br/>
+	<h:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color:red;" />
+	
+	
+	
+	
+	<!-- ================================================================= -->
+	<!-- ========== Affichage de la liste des clients de la BDD ========== -->
+	<!-- ================================================================= -->
+	<!-- 
+		> affichage de la liste avec le composant JSF '<h:datatable>' :
+				-> attribut 'value' : liste à afficher
+				-> attribut 'var' : itération courante
+				
+		>> -> findAllClientsBdd() retourne une liste<Client>
+		   -> la var client est un objet de type Client avec les props: id_client, nom, prenom, adresse, code_postal, ville, telephone, conseiller_id
+	 -->
+	 <br/>
+	 
+	 <h2>Liste des clients</h2>
+	
+	<h:form>
+	<h:dataTable value="#{gestionClient.findAllClientsBdd()}" var="client" border="1" width="60%">
+		
+		<!-- colonne pour afficher le nom du client : nom de la colonne + données -->
+		<h:column>
+			<!-- en-tête de la colonne -->
+			<f:facet name="header">
+				<h:outputText value="Nom" />
+			</f:facet>
+			<!-- donnée de la colonne -->
+			<h:outputText value="#{client.nom}" />
+		</h:column>
+
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Prenom" />
+			</f:facet>
+			<h:outputText value="#{client.prenom}" />
+		</h:column>	
+		
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Adresse" />
+			</f:facet>
+			<h:outputText value="#{client.adresse}" />
+		</h:column>	
+				
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Code_postal" />
+			</f:facet>
+			<h:outputText value="#{client.code_postal}" />
+		</h:column>	
+		
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Ville" />
+			</f:facet>
+			<h:outputText value="#{client.ville}" />
+		</h:column>	
+		
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Telephone" />
+			</f:facet>
+			<h:outputText value="#{client.telephone}" />
+		</h:column>	
+		
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Conseiller_id" />
+			</f:facet>
+			<h:outputText value="#{client.conseiller_id}" />
+		</h:column>	
+		
+		
+		
+		<!-- modifier le client -->
+		<h:column>	
+		
+			<f:facet name="header">
+				<h:outputText value="Modifier" />
+			</f:facet>
+			<!-- 
+					attributs du lien h:commandLink :
+						- action : clé d'outcom pour la navigation (ref faces-config.xml)
+						- actionListener : méthode à invoquer dans le managedbean
+			 -->
+			 <h:commandLink id="update" action="editClient" actionListener="#{gestionClient.selectionnerClient}">
+			 
+				 <!-- passage du paramètre au composant : id = 'updateID' / valeur = id du client -->
+				 <f:param id="updateID" name="id" value="#{client.id_client}" />
+				 
+				 <!-- label du lien -->
+				 <h:outputText value="modifier"/>	
+			 </h:commandLink>		
+		</h:column>
+		
+		
+		
+		<h:column>	
+			<!-- supprimer le client -->
+			<f:facet name="header">
+				<h:outputText value="Supprimer" />
+			</f:facet>			
+			
+			 <h:commandLink id="delete" action="listClient" actionListener="#{gestionClient.supprimerClient}">
+			 
+				 <f:param id="deleteID" name="id" value="#{client.id_client}" />
+				 
+				 <h:outputText value="supprimer"/>	
+				 
+			 </h:commandLink>		
+		</h:column>		
+		
+	</h:dataTable>
+	
+	
+	
+	<!-- ================================================================= -->
+	<!-- =========== Bouton pour ajouter un client dans la BDD =========== -->
+	<!-- ================================================================= -->	
+	<br/><br/><br/>
+	<!-- 
+		> attributs de h:commandButton :
+				- action : clé d'outcom (ref faces-config.xml)
+				- actionListener : méthode à invoquer dans le MB
+				- value : label du bouton
+				
+		> au click sur le bouton :
+				-> appel de la méthode 'initialiserClient()' du MB qui permet 
+				   d'initialiser un objet client vide pour pouvoir récupérer les 
+				   valeurs du formulaire d'ajout.
+				   
+				-> naviguer vers formulaire d'ajout de la page 'ajouter-client.xhtml'
+	 -->
+	<h:commandButton action="addClient" 
+					 actionListener="#{gestionClient.initialiserClient}" 
+					 value="Ajouter un nouveau client" />
+	
+	
+	</h:form>
+
+	
+</body> 
+</html>
