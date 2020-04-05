@@ -77,13 +77,14 @@ public class CompteDaoImpl implements ICompteDAO{
 		try {
 			
 			//1. requête préparée
-			ps = this.connection.prepareStatement("INSERT INTO comptes(type_compte, num_compte, solde, taux, decouvert) values(?,?,?,?,?)");
+			ps = this.connection.prepareStatement("INSERT INTO comptes(type_compte, num_compte, solde, taux, decouvert, client_id) values(?,?,?,?,?,?)");
 			
 			ps.setString(1, compte.getType_compte());
 			ps.setInt(2, compte.getNum_compte());
 			ps.setDouble(3, compte.getSolde());
 			ps.setDouble(4, compte.getTaux());
 			ps.setDouble(5, compte.getDecouvert());
+			ps.setDouble(6, compte.getClient_id());
 			
 			//2. exécution + récup du résultat
 			ps.executeUpdate();
@@ -392,10 +393,13 @@ public class CompteDaoImpl implements ICompteDAO{
 		return false;
 	}
 
-	@Override
-	public void transfert(double pMontant, int pIdCompte1, int pIdCompte2) {
-		withdrow(pMontant, pIdCompte1);
-		deposit(pMontant, pIdCompte2);
+	
+	public boolean transfert(double pMontant, int pIdCompte1, int pIdCompte2) {
+		
+		if(withdrow(pMontant, pIdCompte1) && deposit(pMontant, pIdCompte2))
+			return true;
+		else
+			return false;
 		
 	}
 	

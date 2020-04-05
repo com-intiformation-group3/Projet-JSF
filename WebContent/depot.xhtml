@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Page de dépôt d'un compte</title>
+</h:head> 
+<body> 
+	
+	<h:form rendered="#{not empty user_login}" style="float: right;">
+		<h:panelGrid>
+		
+			<f:facet name="footer">
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+
+	<h:form>
+
+	
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5">
+			<f:facet name="header">
+				Formulaire de dépôt d'un compte
+			</f:facet>
+			
+			<h:outputLabel for="idCompte" value="ID Compte : " />
+			<h:inputText id="idCompte" value="#{gestionCompte.compte.id_compte}" />
+
+			
+			<h:outputLabel for="idMontant" value="Montant : " />
+			<h:inputText id="idMontant" value="#{gestionCompte.compte.montant}" />
+			
+			
+			<f:facet name="footer">
+				<h:commandButton action="listCompte" actionListener="#{gestionCompte.deposer}" value="Déposer" />
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+	
+</body> 
+</html>

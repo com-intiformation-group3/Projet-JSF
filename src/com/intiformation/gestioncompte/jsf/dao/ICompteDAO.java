@@ -20,7 +20,7 @@ public interface ICompteDAO extends IGenerale<Compte>{
 	
 	public boolean deposit (double pMontant, int pIdCompte);
 	
-	public void transfert (double pMontant, int pIdCompte1, int pIdCompte2);
+	public boolean transfert (double pMontant, int pIdCompte1, int pIdCompte2);
 	
 	
 

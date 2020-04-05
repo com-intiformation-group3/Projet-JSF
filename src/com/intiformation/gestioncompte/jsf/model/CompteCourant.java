@@ -23,7 +23,6 @@ public class CompteCourant extends Compte{
 		this.decouvert = decouvert;
 	}
 	
-
 	public CompteCourant(String type_compte, int num_compte, double solde, double decouvert) {
 		super();
 		this.type_compte = "courant";
@@ -32,6 +31,8 @@ public class CompteCourant extends Compte{
 		this.decouvert = decouvert;
 	}
 	
-
+	public CompteCourant() {
+		
+	}
 
 }

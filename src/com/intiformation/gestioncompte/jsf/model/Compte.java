@@ -2,7 +2,7 @@ package com.intiformation.gestioncompte.jsf.model;
 
 
 
-public abstract class Compte{
+public class Compte{
 
 	//props
 	protected int id_compte;
@@ -11,14 +11,24 @@ public abstract class Compte{
 	protected double solde;
 	protected double taux;
 	protected double decouvert;
-	protected int client_id;	
+	protected int client_id;
+	
+	//props pour les retraits/dépôts/virements
+	protected double montant; //montant de la transaction
+	protected int id_compteE; //compte emetteur
+	protected int id_compteD; //compte déstinataire
 	
 	
 	
 	
 	
-	
+	//ctor
+	public Compte() {
+	}
 
+	
+	
+	
 
 	//getters|setters
 	public int getId_compte() {
@@ -89,4 +99,37 @@ public abstract class Compte{
 	public void setClient_id(int client_id) {
 		this.client_id = client_id;
 	}
+	
+	
+	
+	
+	
+	
+	
+
+	public double getMontant() {
+		return montant;
+	}
+
+	public void setMontant(double montant) {
+		this.montant = montant;
+	}
+
+	public int getId_compteE() {
+		return id_compteE;
+	}
+
+	public void setId_compteE(int id_compteE) {
+		this.id_compteE = id_compteE;
+	}
+
+	public int getId_compteD() {
+		return id_compteD;
+	}
+	
+	public void setId_compteD(int id_compteD) {
+		this.id_compteD = id_compteD;
+	}
+	
+	
 }

@@ -14,6 +14,26 @@
     NAME="output2" PATH="/ajouter-client.xhtml"
     TARGET="rules:#ajouter-client.xhtml" TITLE="addClient" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#accueil.xhtml:1" NAME="item1"
+   PATH="/accueil.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editCompte::#modifier-compte.xhtml"
+    NAME="output1" PATH="/modifier-compte.xhtml"
+    TARGET="rules:#modifier-compte.xhtml" TITLE="editCompte" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="addCompte::#ajouter-compte.xhtml"
+    NAME="output2" PATH="/ajouter-compte.xhtml"
+    TARGET="rules:#ajouter-compte.xhtml" TITLE="addCompte" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="withdrawal::#retrait.xhtml" NAME="output3"
+    PATH="/retrait.xhtml" TARGET="rules:#retrait.xhtml"
+    TITLE="withdrawal" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="deposit::#depot.xhtml" NAME="output4"
+    PATH="/depot.xhtml" TARGET="rules:#depot.xhtml" TITLE="deposit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="transfer::#virement.xhtml" NAME="output5"
+    PATH="/virement.xhtml" TARGET="rules:#virement.xhtml"
+    TITLE="transfer" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#modifier-client.xhtml"
   PATH="/modifier-client.xhtml" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
@@ -31,6 +51,51 @@
    <PROCESS-ITEM-OUTPUT ID="listClient::#accueil.xhtml" NAME="output"
     PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
     TITLE="listClient" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modifier-compte.xhtml"
+  PATH="/modifier-compte.xhtml" SHAPE="32,401,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modifier-compte.xhtml:0" NAME="item"
+   PATH="/modifier-compte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ajouter-compte.xhtml"
+  PATH="/ajouter-compte.xhtml" SHAPE="576,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ajouter-compte.xhtml:0" NAME="item"
+   PATH="/ajouter-compte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#retrait.xhtml" PATH="/retrait.xhtml"
+  SHAPE="576,321,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#retrait.xhtml:0" NAME="item"
+   PATH="/retrait.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#depot.xhtml" PATH="/depot.xhtml"
+  SHAPE="576,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#depot.xhtml:0" NAME="item"
+   PATH="/depot.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#virement.xhtml" PATH="/virement.xhtml"
+  SHAPE="576,609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#virement.xhtml:0" NAME="item"
+   PATH="/virement.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listCompte::#accueil.xhtml" NAME="output"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml"
+    TITLE="listCompte" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

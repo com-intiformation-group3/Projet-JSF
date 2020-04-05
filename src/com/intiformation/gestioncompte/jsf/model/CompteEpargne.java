@@ -23,7 +23,6 @@ public class CompteEpargne extends Compte{
 		this.taux = taux;
 	}
 	
-
 	public CompteEpargne(String type_compte, int num_compte, double solde, double taux) {
 		super();
 		this.type_compte = "epargne";
@@ -32,4 +31,7 @@ public class CompteEpargne extends Compte{
 		this.taux = taux;
 	}
 	
+	public CompteEpargne() {
+		
+	}
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Page de virement bancaire</title>
+</h:head> 
+<body> 
+	
+	<h:form rendered="#{not empty user_login}" style="float: right;">
+		<h:panelGrid>
+		
+			<f:facet name="footer">
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+
+	<h:form>
+
+	
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5">
+			<f:facet name="header">
+				Formulaire de virement d'un compte à un autre
+			</f:facet>
+			
+			<h:outputLabel for="idCompteE" value="ID Compte Emetteur : " />
+			<h:inputText id="idCompteE" value="#{gestionCompte.compte.id_compteE}" />
+			
+			<h:outputLabel for="idIdCompteD" value="ID Compte Déstinataire : " />
+			<h:inputText id="idCompteD" value="#{gestionCompte.compte.id_compteD}" />
+			
+			<h:outputLabel for="idMontant" value="Montant : " />
+			<h:inputText id="idMontant" value="#{gestionCompte.compte.montant}" />
+			
+			
+			<f:facet name="footer">
+				<h:commandButton action="listCompte" actionListener="#{gestionCompte.virement}" value="Valider" />
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+
+</body> 
+</html>

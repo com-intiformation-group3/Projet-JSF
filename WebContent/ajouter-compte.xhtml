@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<title>Page d'ajout d'un compte</title>
+</h:head> 
+<body> 
+
+	<h:form rendered="#{not empty user_login}" style="float: right;">
+	<h:panelGrid>
+	<f:facet name="footer">
+		<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+	</f:facet>
+	
+	</h:panelGrid>
+	</h:form>
+	
+	
+
+	<br/><br/>
+	<h:form>
+	
+
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5">
+			<f:facet name="header">
+				Formulaire d'ajout d'un nouveau compte
+			</f:facet>
+			
+			<h:outputLabel for="idTypeCompte" value="Type compte : " />
+			<h:inputText id="idTypeCompte" value="#{gestionCompte.compte.type_compte}" />
+		
+			<h:outputLabel for="idNumCompte" value="Numéro compte : " />
+			<h:inputText id="idNumCompte" value="#{gestionCompte.compte.num_compte}" />
+		
+			<h:outputLabel for="idSolde" value="Solde : " />
+			<h:inputText id="idSolde" value="#{gestionCompte.compte.solde}" />
+			
+			<h:outputLabel for="idTaux" value="Taux : " />
+			<h:inputText id="idTaux" value="#{gestionCompte.compte.taux}" />
+			
+			<h:outputLabel for="idDecouvert" value="Découvert : " />
+			<h:inputText id="idDecouvert" value="#{gestionCompte.compte.decouvert}" />
+			
+			<h:outputLabel for="idClientId" value="Client ID : " />
+			<h:inputText id="idClientId" value="#{gestionCompte.compte.client_id}" />
+			
+			
+			
+			<f:facet name="footer">
+				<h:commandButton action="listCompte" actionListener="#{gestionCompte.ajouterCompte}" value="Ajouter" />
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+		
+</body> 
+</html>
