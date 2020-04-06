@@ -29,4 +29,5 @@ public interface IConseillerDAO {
 	
 	public String idConseiller(String pMail);
 	
+	public int GetIdConseiller(String pMail);
 }

@@ -7,6 +7,8 @@ import com.intiformation.gestioncompte.jsf.model.Client;
 
 public interface IClientDAO extends IGenerale<Client>{
 	
+	public List<Client> getAll(int pIdCons);
+	
 	public List<Client> findClientByIdConseiller(int pIdConseiller);
 
 }

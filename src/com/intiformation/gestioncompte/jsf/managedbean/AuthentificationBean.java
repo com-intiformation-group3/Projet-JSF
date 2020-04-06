@@ -1,6 +1,8 @@
 package com.intiformation.gestioncompte.jsf.managedbean;
 
+
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -49,6 +51,7 @@ public class AuthentificationBean implements Serializable{
 			HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(true);
 			
 			//sauvegarde du login et password dans la session
+			session.setAttribute("user_id", conseillerDAO.GetIdConseiller(login));
 			session.setAttribute("user_login", login);
 			session.setAttribute("user_password", password);
 			

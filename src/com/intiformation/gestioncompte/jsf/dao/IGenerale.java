@@ -16,7 +16,7 @@ public interface IGenerale<T> {
 	
 	//------méthodes de la dao--------
 	
-	public List<T> getAll();
+	//public List<T> getAll();
 
 	public boolean ajouter(T t);
 		

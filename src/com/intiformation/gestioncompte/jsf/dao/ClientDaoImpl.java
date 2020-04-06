@@ -16,7 +16,7 @@ public class ClientDaoImpl implements IClientDAO{
 
 	
 	
-	public List<Client> getAll() {
+	public List<Client> getAll(int pIdCons) {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -24,7 +24,8 @@ public class ClientDaoImpl implements IClientDAO{
 		try {
 			
 			//1. requête préparée
-			ps = this.connection.prepareStatement("SELECT * FROM clients");
+			ps = this.connection.prepareStatement("SELECT * FROM clients WHERE conseiller_id = ?");
+			ps.setInt(1, pIdCons);
 			
 			//2. exécution + récup du résultat
 			rs = ps.executeQuery();

@@ -10,6 +10,7 @@ public interface ICompteDAO extends IGenerale<Compte>{
 	
 	
 	
+	public List<Compte> getAll();
 	
 	public boolean setCompteToClient (int pIdClient, int pIdCompte);
 	

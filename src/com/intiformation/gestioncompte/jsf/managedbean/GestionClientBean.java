@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 
 import com.intiformation.gestioncompte.jsf.dao.ClientDaoImpl;
 import com.intiformation.gestioncompte.jsf.dao.IClientDAO;
@@ -49,8 +50,13 @@ public class GestionClientBean implements Serializable{
 	 * permet aussi d'alimenter la table dans accueil.xhtml pour affichage.
 	 */
 	public List<Client> findAllClientsBdd(){
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
-		liste_clients = clientDAO.getAll();
+		HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(false);
+		
+		int pIdCons = (int) session.getAttribute("user_id");
+		System.out.println(pIdCons);
+		liste_clients = clientDAO.getAll(pIdCons);
 		
 		return liste_clients;
 	}
