@@ -107,7 +107,6 @@ public class CompteDaoImpl implements ICompteDAO{
 		return false;
 	}
 
-	@Override
 	public boolean modifier(Compte compte) {
 
 		PreparedStatement ps = null;
@@ -146,7 +145,6 @@ public class CompteDaoImpl implements ICompteDAO{
 		return false;
 	}
 
-	@Override
 	public boolean supprimer(int id) {
 
 		PreparedStatement ps = null;
@@ -179,7 +177,6 @@ public class CompteDaoImpl implements ICompteDAO{
 		return false;
 	}
 
-	@Override
 	public Compte getById(int id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -353,7 +350,6 @@ public class CompteDaoImpl implements ICompteDAO{
 		}
 	}
 
-	@Override
 	public boolean deposit(double pMontant, int pIdCompte) {
 		//demande de récupérer le compte concerné par le dépôt d'argent
 		Compte compte = getById(pIdCompte);

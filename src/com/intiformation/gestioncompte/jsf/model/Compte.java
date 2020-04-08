@@ -17,6 +17,8 @@ public class Compte{
 	protected double montant; //montant de la transaction
 	protected int id_compteE; //compte emetteur
 	protected int id_compteD; //compte déstinataire
+
+	
 	
 	
 	
@@ -130,6 +132,7 @@ public class Compte{
 	public void setId_compteD(int id_compteD) {
 		this.id_compteD = id_compteD;
 	}
+
 	
 	
 }

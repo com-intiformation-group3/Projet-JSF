@@ -27,6 +27,7 @@ public class GestionClientBean implements Serializable{
 
 	//props
 	private Client client;
+	private int filtreConseillerId = 0;
 	
 	List<Client> liste_clients;
 	
@@ -50,7 +51,10 @@ public class GestionClientBean implements Serializable{
 	 */
 	public List<Client> findAllClientsBdd(){
 		
-		liste_clients = clientDAO.getAll();
+		if(filtreConseillerId > 0)
+			liste_clients = clientDAO.findClientByIdConseiller(filtreConseillerId);
+		else
+			liste_clients = clientDAO.getAll();
 		
 		return liste_clients;
 	}
@@ -217,4 +221,12 @@ public class GestionClientBean implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	public int getFiltreConseillerId() {
+		return filtreConseillerId;
+	}
+	public void setFiltreConseillerId(int filtreConseillerId) {
+		this.filtreConseillerId = filtreConseillerId;
+	}
+	
 }

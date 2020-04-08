@@ -6,14 +6,19 @@
 
 <h:head>
 	<title>Page dédition d'un client</title>
-</h:head> 
-<body> 
 	
-	<h:form rendered="#{not empty user_login}" style="float: right;">
-		<h:panelGrid>
+	<!-- lien css -->
+	<h:outputStylesheet library="styles" name="perso.css"/>
+	
+</h:head> 
+<body class="bform"> 
+	
+	<h:form rendered="#{not empty user_login}" style="float: top;">
+		<h:panelGrid style="padding-left: 90%;">
 		
 			<f:facet name="footer">
-				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+				<h:commandButton value="Retour" action="accueil.xhtml" class="bt_accueil" />&nbsp;
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}" class="bt_accueil" />
 			</f:facet>
 		
 		</h:panelGrid>
@@ -28,34 +33,34 @@
 		
 		
 		
-		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5">
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5"  class="formC2">
 			<f:facet name="header">
 				Formulaire de modification d'un client
 			</f:facet>
 			
 			<h:outputLabel for="idNom" value="Nom : " />
-			<h:inputText id="idNom" value="#{gestionClient.client.nom}" />
+			<h:inputText id="idNom" value="#{gestionClient.client.nom}" class="inputText" />
 		
 			<h:outputLabel for="idPrenom" value="Prénom : " />
-			<h:inputText id="idPrenom" value="#{gestionClient.client.prenom}" />
+			<h:inputText id="idPrenom" value="#{gestionClient.client.prenom}" class="inputText" />
 		
 			<h:outputLabel for="idAdresse" value="Adresse : " />
-			<h:inputText id="idAdresse" value="#{gestionClient.client.adresse}" />
+			<h:inputText id="idAdresse" value="#{gestionClient.client.adresse}" class="inputText" />
 			
 			<h:outputLabel for="idCodePostal" value="Code postal : " />
-			<h:inputText id="idCodePostal" value="#{gestionClient.client.code_postal}" />
+			<h:inputText id="idCodePostal" value="#{gestionClient.client.code_postal}" class="inputText" />
 			
 			<h:outputLabel for="idVille" value="Ville : " />
-			<h:inputText id="idVille" value="#{gestionClient.client.ville}" />
+			<h:inputText id="idVille" value="#{gestionClient.client.ville}" class="inputText" />
 			
 			<h:outputLabel for="idTelephone" value="Telephone : " />
-			<h:inputText id="idTelephone" value="#{gestionClient.client.telephone}" />
+			<h:inputText id="idTelephone" value="#{gestionClient.client.telephone}" class="inputText" />
 			
 			<h:outputLabel for="idConseillerId" value="Conseiller ID : " />
-			<h:inputText id="idConseillerId" value="#{gestionClient.client.conseiller_id}" />
+			<h:inputText id="idConseillerId" value="#{gestionClient.client.conseiller_id}" class="inputText" />
 			
 			<f:facet name="footer">
-				<h:commandButton action="listClient" actionListener="#{gestionClient.modifierClient}" value="Modifier" />
+				<h:commandButton action="listClient" actionListener="#{gestionClient.modifierClient}" value="Modifier" class="bt2_accueil" />
 			</f:facet>
 		
 		</h:panelGrid>

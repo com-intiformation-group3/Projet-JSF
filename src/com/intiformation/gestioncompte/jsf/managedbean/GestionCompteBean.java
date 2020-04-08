@@ -12,7 +12,6 @@ import javax.faces.event.ActionEvent;
 
 import com.intiformation.gestioncompte.jsf.dao.CompteDaoImpl;
 import com.intiformation.gestioncompte.jsf.dao.ICompteDAO;
-import com.intiformation.gestioncompte.jsf.model.Client;
 import com.intiformation.gestioncompte.jsf.model.Compte;
 
 
@@ -25,6 +24,7 @@ public class GestionCompteBean implements Serializable{
 
 	//props
 	private Compte compte;
+	private int filtreClientId = 0;
 	
 	List<Compte> liste_comptes;
 	
@@ -48,12 +48,15 @@ public class GestionCompteBean implements Serializable{
 	 */
 	public List<Compte> findAllComptesBdd(){
 		
-		liste_comptes = compteDAO.getAll();
+		if(filtreClientId > 0)
+			liste_comptes = compteDAO.findCompteByIdOwner(filtreClientId);
+		else
+			liste_comptes = compteDAO.getAll();
 		
 		return liste_comptes;
 	}
 	
-	
+
 
 /////////////////////////////////////////////////////////////////// SECTION  SUPPRESSION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -248,7 +251,9 @@ public class GestionCompteBean implements Serializable{
 		}
 	}
 	
-		
+///////////////////////////////////////////////////////////////////////// SECTION  Filtre Client ID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 	
 	
 	
@@ -261,6 +266,15 @@ public class GestionCompteBean implements Serializable{
 	
 	public void setCompte(Compte compte) {
 	this.compte = compte;
+	}
+
+	
+	public int getFiltreClientId() {
+		return filtreClientId;
+	}
+
+	public void setFiltreClientId(int filtreClientId) {
+		this.filtreClientId = filtreClientId;
 	}	
 		
 	

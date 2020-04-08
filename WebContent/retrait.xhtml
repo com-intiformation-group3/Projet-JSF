@@ -6,14 +6,19 @@
 
 <h:head>
 	<title>Page de retrait d'un compte</title>
-</h:head> 
-<body> 
 	
-	<h:form rendered="#{not empty user_login}" style="float: right;">
-		<h:panelGrid>
+	<!-- lien css -->
+	<h:outputStylesheet library="styles" name="perso.css"/>
+	
+</h:head> 
+<body class="bform"> 
+	
+	<h:form rendered="#{not empty user_login}" style="float: top;">
+		<h:panelGrid style="padding-left: 90%;">
 		
 			<f:facet name="footer">
-				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+				<h:commandButton value="Retour" action="accueil.xhtml" class="bt_accueil" />&nbsp;
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}" class="bt_accueil" />
 			</f:facet>
 		
 		</h:panelGrid>
@@ -24,21 +29,21 @@
 	<h:form>
 
 	
-		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5">
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5"  class="formC2">
 			<f:facet name="header">
 				Formulaire de retrait d'un compte
 			</f:facet>
 			
 			<h:outputLabel for="idCompte" value="ID Compte : " />
-			<h:inputText id="idCompte" value="#{gestionCompte.compte.id_compte}" />
+			<h:inputText id="idCompte" value="#{gestionCompte.compte.id_compte}" class="inputText" />
 
 			
 			<h:outputLabel for="idMontant" value="Montant : " />
-			<h:inputText id="idMontant" value="#{gestionCompte.compte.montant}" />
+			<h:inputText id="idMontant" value="#{gestionCompte.compte.montant}" class="inputText" />
 			
 			
 			<f:facet name="footer">
-				<h:commandButton action="listCompte" actionListener="#{gestionCompte.retirer}" value="Retirer" />
+				<h:commandButton action="listCompte" actionListener="#{gestionCompte.retirer}" value="Retirer" class="bt2_accueil" />
 			</f:facet>
 		
 		</h:panelGrid>

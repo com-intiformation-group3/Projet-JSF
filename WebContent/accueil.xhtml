@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Page d'accueil du site</title>
@@ -184,7 +185,12 @@
 	<h:commandButton action="addClient" 
 					 actionListener="#{gestionClient.initialiserClient}" 
 					 value="Ajouter un nouveau client" />
-	
+	<br/><br/>
+
+	<h:outputLabel for="conseillerID" value="Conseiller ID : " />
+	<h:inputText id="conseillerID" a:placeholder="Conseiller ID" value="#{gestionClient.filtreConseillerId}" styleClass="form-control"  />
+
+	<h:commandButton action="listCompte" value="Chercher" />
 	
 	</h:form>
 	<br/><br/>
@@ -330,6 +336,18 @@
 	<h:commandButton action="transfer" 
 					 actionListener="#{gestionCompte.initialiserCompte}" 
 					 value="Faire un virement bancaire" />	
+	
+	<br/><br/>
+
+	<h:outputLabel for="clientId" value="Client ID : " />
+	<h:inputText id="clientId" a:placeholder="Client ID" value="#{gestionCompte.filtreClientId}" styleClass="form-control"  />
+
+	<h:commandButton action="listCompte" value="Chercher" />
+	
+		
+
+
+	  	
 	
 	</h:form>
 	
