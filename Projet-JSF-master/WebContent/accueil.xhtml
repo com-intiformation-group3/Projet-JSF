@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page d'accueil du site</title>
+</h:head> 
+<body> 
+
+	<!-- 
+		> vérif de la présence de l'attribut 'user_login' dans la session
+		  sauvegardé lors de la connexion du conseiller.
+		
+		> vérif via l'attribut 'rendered' qui permet de conditionner l'affichage d'un élement JSF
+	 -->
+	
+	<h:form rendered="#{not empty user_login}" style="float: right;">
+		<h:panelGrid>
+		
+			<f:facet name="footer">
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}"/>
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+	<!-- ================================================================= -->
+	<!-- ================= Affichage des messages ======================== -->
+	<!-- ================================================================= -->	
+	<br/>
+	<h:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color:red;" />
+	
+	
+	
+	
+	<!-- ================================================================= -->
+	<!-- ========== Affichage de la liste des clients de la BDD ========== -->
+	<!-- ================================================================= -->
+	<!-- 
+		> affichage de la liste avec le composant JSF '<h:datatable>' :
+				-> attribut 'value' : liste à afficher
+				-> attribut 'var' : itération courante
+				
+		>> -> findAllClientsBdd() retourne une liste<Client>
+		   -> la var client est un objet de type Client avec les props: id_client, nom, prenom, adresse, code_postal, ville, telephone, conseiller_id
+	 -->
+	 <br/><br/>
+	 
+	 <p:accordionPanel>
+		<p:tab title="Liste des clients">
+			<p:panelGrid>
+	 
+	
+						<h:form>
+						<h:dataTable value="#{gestionClient.findAllClientsBdd()}" var="client" border="1" width="60%">
+							
+							<!-- colonne pour afficher le nom du client : nom de la colonne + données -->
+							<h:column>
+								<!-- en-tête de la colonne -->
+								<f:facet name="header">
+									<h:outputText value="ID Client" />
+								</f:facet>
+								<!-- donnée de la colonne -->
+								<h:outputText value="#{client.id_client}" />
+							</h:column>
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Nom" />
+								</f:facet>
+								<h:outputText value="#{client.nom}" />
+							</h:column>
+					
+					
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Prenom" />
+								</f:facet>
+								<h:outputText value="#{client.prenom}" />
+							</h:column>	
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Adresse" />
+								</f:facet>
+								<h:outputText value="#{client.adresse}" />
+							</h:column>	
+									
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Code postal" />
+								</f:facet>
+								<h:outputText value="#{client.code_postal}" />
+							</h:column>	
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Ville" />
+								</f:facet>
+								<h:outputText value="#{client.ville}" />
+							</h:column>	
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Telephone" />
+								</f:facet>
+								<h:outputText value="#{client.telephone}" />
+							</h:column>	
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Conseiller ID" />
+								</f:facet>
+								<h:outputText value="#{client.conseiller_id}" />
+							</h:column>	
+							
+							
+							
+							<!-- modifier le client -->
+							<h:column>	
+							
+								<f:facet name="header">
+									<h:outputText value="Modifier" />
+								</f:facet>
+								<!-- 
+										attributs du lien h:commandLink :
+											- action : clé d'outcom pour la navigation (ref faces-config.xml)
+											- actionListener : méthode à invoquer dans le managedbean
+								 -->
+								 <h:commandLink id="update" action="editClient" actionListener="#{gestionClient.selectionnerClient}">
+								 
+									 <!-- passage du paramètre au composant : id = 'updateID' / valeur = id du client -->
+									 <f:param id="updateID" name="id" value="#{client.id_client}" />
+									 
+									 <!-- label du lien -->
+									 <h:outputText value="modifier"/>	
+								 </h:commandLink>		
+							</h:column>
+							
+							
+							
+							<h:column>	
+								<!-- supprimer le client -->
+								<f:facet name="header">
+									<h:outputText value="Supprimer" />
+								</f:facet>			
+								
+								 <h:commandLink id="delete" action="listClient" actionListener="#{gestionClient.supprimerClient}">
+								 
+									 <f:param id="deleteID" name="id" value="#{client.id_client}" />
+									 
+									 <h:outputText value="supprimer"/>	
+									 
+								 </h:commandLink>		
+							</h:column>		
+							
+						</h:dataTable>
+						
+						
+						
+						<!-- ================================================================= -->
+						<!-- =========== Bouton pour ajouter un client dans la BDD =========== -->
+						<!-- ================================================================= -->	
+						<br/>
+						<!-- 
+							> attributs de h:commandButton :
+									- action : clé d'outcom (ref faces-config.xml)
+									- actionListener : méthode à invoquer dans le MB
+									- value : label du bouton
+									
+							> au click sur le bouton :
+									-> appel de la méthode 'initialiserClient()' du MB qui permet 
+									   d'initialiser un objet client vide pour pouvoir récupérer les 
+									   valeurs du formulaire d'ajout.
+									   
+									-> naviguer vers formulaire d'ajout de la page 'ajouter-client.xhtml'
+						 -->
+						<h:commandButton action="addClient" 
+										 actionListener="#{gestionClient.initialiserClient}" 
+										 value="Ajouter un nouveau client" />
+						<br/><br/>
+					
+						<h:outputLabel for="conseillerID" value="Conseiller ID : " />
+						<h:inputText id="conseillerID" a:placeholder="Conseiller ID" value="#{gestionClient.filtreConseillerId}" styleClass="form-control"  />
+					
+						<h:commandButton action="listCompte" value="Chercher" />
+						
+						</h:form>
+			</p:panelGrid>
+		</p:tab>
+	
+	
+	
+	
+	<p:tab title="Liste des comptes">
+			<p:panelGrid>
+	
+					<h:form>
+					<h:dataTable value="#{gestionCompte.findAllComptesBdd()}" var="compte" border="1" width="60%">
+						
+						<!-- colonne pour afficher le nom du compte : nom de la colonne + données -->
+						<h:column>
+							<!-- en-tête de la colonne -->
+							<f:facet name="header">
+								<h:outputText value="ID Compte" />
+							</f:facet>
+							<!-- donnée de la colonne -->
+							<h:outputText value="#{compte.id_compte}" />
+						</h:column>
+						
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Type compte" />
+							</f:facet>
+							<h:outputText value="#{compte.type_compte}" />
+						</h:column>
+				
+				
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Numéro compte" />
+							</f:facet>
+							<h:outputText value="#{compte.num_compte}" />
+						</h:column>	
+						
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Solde" />
+							</f:facet>
+							<h:outputText value="#{compte.solde}" />
+						</h:column>	
+								
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Taux" />
+							</f:facet>
+							<h:outputText value="#{compte.taux}" />
+						</h:column>	
+						
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Découvert" />
+							</f:facet>
+							<h:outputText value="#{compte.decouvert}" />
+						</h:column>	
+						
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Client ID" />
+							</f:facet>
+							<h:outputText value="#{compte.client_id}" />
+						</h:column>	
+						
+						
+						
+						
+						<!-- modifier le client -->
+						<h:column>	
+						
+							<f:facet name="header">
+								<h:outputText value="Modifier" />
+							</f:facet>
+							<!-- 
+									attributs du lien h:commandLink :
+										- action : clé d'outcom pour la navigation (ref faces-config.xml)
+										- actionListener : méthode à invoquer dans le managedbean
+							 -->
+							 <h:commandLink id="update" action="editCompte" actionListener="#{gestionCompte.selectionnerCompte}">
+							 
+								 <!-- passage du paramètre au composant : id = 'updateID' / valeur = id du compte -->
+								 <f:param id="updateID" name="id" value="#{compte.id_compte}" />
+								 
+								 <!-- label du lien -->
+								 <h:outputText value="modifier"/>	
+							 </h:commandLink>		
+						</h:column>
+						
+						
+						
+						<h:column>	
+							<!-- supprimer le client -->
+							<f:facet name="header">
+								<h:outputText value="Supprimer" />
+							</f:facet>			
+							
+							 <h:commandLink id="delete" action="listCompte" actionListener="#{gestionCompte.supprimerCompte}">
+							 
+								 <f:param id="deleteID" name="id" value="#{compte.id_compte}" />
+								 
+								 <h:outputText value="supprimer"/>	
+								 
+							 </h:commandLink>		
+						</h:column>
+						
+						<h:column>	
+											 <!--  Retirer de l'argnet -->
+											<f:facet name="header">
+												<h:outputText value="Retirer" />
+											</f:facet>			
+											
+											 <h:commandLink id="withdraw" action="withdrawal" actionListener="#{gestionCompte.initialiserCompteAvecId}">
+											 
+												 <f:param id="withdrawID" name="id" value="#{compte.id_compte}" />
+												 
+												 <h:outputText value="Retirer"/>	
+												 
+											 </h:commandLink>		
+										</h:column>	
+										
+										<h:column>	
+											 <!--  Deposer de l'argnet -->
+											<f:facet name="header">
+												<h:outputText value="Retirer" />
+											</f:facet>			
+											
+											 <h:commandLink id="depot" action="deposit" actionListener="#{gestionCompte.initialiserCompteAvecId}">
+											 
+												 <f:param id="depositID" name="id" value="#{compte.id_compte}" />
+												 
+												 <h:outputText value="Déposer"/>	
+												 
+											 </h:commandLink>		
+										</h:column>			
+						
+					</h:dataTable>
+					
+					
+					
+					<!-- ================================================================= -->
+					<!-- =========== Bouton pour ajouter un compte dans la BDD =========== -->
+					<!-- ================================================================= -->	
+					<br/>
+					<!-- 
+						> attributs de h:commandButton :
+								- action : clé d'outcom (ref faces-config.xml)
+								- actionListener : méthode à invoquer dans le MB
+								- value : label du bouton
+								
+						> au click sur le bouton :
+								-> appel de la méthode 'initialiserCompte()' du MB qui permet 
+								   d'initialiser un objet compte vide pour pouvoir récupérer les 
+								   valeurs du formulaire d'ajout.
+								   
+								-> naviguer vers formulaire d'ajout de la page 'ajouter-compte.xhtml'
+					 -->
+					<h:commandButton action="addCompte" 
+									 actionListener="#{gestionCompte.initialiserCompte}" 
+									 value="Ajouter un nouveau compte" />
+							 
+					
+					<h:commandButton action="transfer" 
+									 actionListener="#{gestionCompte.initialiserCompte}" 
+									 value="Faire un virement bancaire" />	
+					
+					<br/><br/>
+				
+					<h:outputLabel for="clientId" value="Client ID : " />
+					<h:inputText id="clientId" a:placeholder="Client ID" value="#{gestionCompte.filtreClientId}" styleClass="form-control"  />
+				
+					<h:commandButton action="listCompte" value="Chercher" />
+					
+						
+					</h:form>
+	
+			</p:panelGrid>
+		</p:tab>
+	</p:accordionPanel>
+	
+</body> 
+</html>

@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<faces-config version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+
+
+	<!-- =============================================================== -->
+	<!-- =============== Configuration Gestion Client  ================= -->
+	<!-- =============================================================== -->
+	<!-- 1. validateur de l'identifiant implémenté dans la classe IdentifiantValidateur -->
+	
+	<!-- 1. règle de navigation des Clients pour la page 'accueil.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 1. page de départ -->
+		<from-view-id>/accueil.xhtml</from-view-id>
+		
+		
+		<!-- 1.1 cas de navigation : accueil.xhtml vers accueil.xhtml (suppression) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>listClient</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+
+
+		<!-- 1.2 cas de navigationn : 'accueil.xhtml' vers modifier-client.xhtml (modification) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>editClient</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/modifier-client.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<!-- 1.3 cas de navigationn : 'accueil.xhtml' vers ajouter-client.xhtml (ajout) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>addClient</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/ajouter-client.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+	
+	
+<!-- ================================================================================================================================================================== -->	
+	
+	<!-- 2. règle de navigation pour la page 'modifier-client.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 2.1 page de départ -->
+		<from-view-id>/modifier-client.xhtml</from-view-id>
+		
+		
+		<!-- 2.2 cas de navigation : modifier-client.xhtml vers accueil.xhtml (modification) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de modifier-client.xhtml) -->
+			<from-outcome>listClient</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>	
+
+
+<!-- ================================================================================================================================================================== -->	
+
+
+	<!-- 3. règle de navigation pour la page 'ajouter-client.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 3.1 page de départ -->
+		<from-view-id>/ajouter-client.xhtml</from-view-id>
+		
+		
+		<!-- 3.2 cas de navigation : ajouter-client.xhtml vers accueil.xhtml (ajout) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de ajouter-client.xhtml) -->
+			<from-outcome>listClient</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>		
+	
+	
+	
+	<!-- =============================================================== -->
+	<!-- =============== Configuration Gestion Compte  ================= -->
+	<!-- =============================================================== -->
+	<!-- 1. règle de navigation des Comptes pour la page 'accueil.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 1.1 page de départ -->
+		<from-view-id>/accueil.xhtml</from-view-id>	
+		
+		<!-- 1.2 cas de navigation : accueil.xhtml vers accueil.xhtml (suppression) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+
+
+		<!-- 1.3 cas de navigationn : 'accueil.xhtml' vers modifier-compte.xhtml (modification) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>editCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/modifier-compte.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<!-- 1.4 cas de navigationn : 'accueil.xhtml' vers ajouter-compte.xhtml (ajout) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>addCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/ajouter-compte.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<!-- 1.4 cas de navigationn : 'accueil.xhtml' vers retrait.xhtml (retrait) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>withdrawal</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/retrait.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<!-- 1.4 cas de navigationn : 'accueil.xhtml' vers depot.xhtml (dépôt) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>deposit</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/depot.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<!-- 1.4 cas de navigationn : 'accueil.xhtml' vers virement.xhtml (virement) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink) -->
+			<from-outcome>transfer</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/virement.xhtml</to-view-id>
+		</navigation-case>			
+		
+	</navigation-rule>
+	
+	
+<!-- ================================================================================================================================================================== -->	
+	
+	<!-- 2. règle de navigation pour la page 'modifier-compte.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 2.1 page de départ -->
+		<from-view-id>/modifier-compte.xhtml</from-view-id>
+		
+		
+		<!-- 2.2 cas de navigation : modifier-compte.xhtml vers accueil.xhtml (modification) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de modifier-compte.xhtml) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>	
+
+
+<!-- ================================================================================================================================================================== -->	
+
+
+	<!-- 3. règle de navigation pour la page 'ajouter-compte.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 3.1 page de départ -->
+		<from-view-id>/ajouter-compte.xhtml</from-view-id>
+		
+		
+		<!-- 3.2 cas de navigation : ajouter-compte.xhtml vers accueil.xhtml (ajout) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de ajouter-compte.xhtml) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>	
+
+
+<!-- ================================================================================================================================================================== -->	
+
+
+	<!-- 3. règle de navigation pour la page 'retrait.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 3.1 page de départ -->
+		<from-view-id>/retrait.xhtml</from-view-id>
+		
+		
+		<!-- 3.2 cas de navigation : retrait.xhtml vers accueil.xhtml (retrait) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de retrait.xhtml) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>		
+
+
+<!-- ================================================================================================================================================================== -->	
+
+
+	<!-- 3. règle de navigation pour la page 'depot.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 3.1 page de départ -->
+		<from-view-id>/depot.xhtml</from-view-id>
+		
+		
+		<!-- 3.2 cas de navigation : depot.xhtml vers accueil.xhtml (dépôt) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de depot.xhtml) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>		
+
+
+<!-- ================================================================================================================================================================== -->	
+
+
+	<!-- 3. règle de navigation pour la page 'virement.xhtml' -->
+	<navigation-rule>
+	
+		<!-- 3.1 page de départ -->
+		<from-view-id>/virement.xhtml</from-view-id>
+		
+		
+		<!-- 3.2 cas de navigation : virement.xhtml vers accueil.xhtml (virement) -->
+		<navigation-case>
+			<!-- clé d'outcom (valeur de l'attribut 'action' de h:commandlink de virement.xhtml) -->
+			<from-outcome>listCompte</from-outcome>
+			<!-- page de destination -->
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>		
+
+
+
+	
+	
+</faces-config>

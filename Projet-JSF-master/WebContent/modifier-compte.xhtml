@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Page d'édition d'un compte</title>
+	
+	<!-- lien css -->
+	<h:outputStylesheet library="styles" name="perso.css"/>
+	
+</h:head> 
+<body class="bform"> 
+	
+	<h:form rendered="#{not empty user_login}" style="float: top;">
+		<h:panelGrid style="padding-left: 90%;">
+		
+			<f:facet name="footer">
+				<h:commandButton value="Retour" action="accueil.xhtml" class="bt_accueil" />&nbsp;
+				<h:commandButton value="Se déconnecter" action="#{authenticationBean.deconnecterConseiller()}" class="bt_accueil" />
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+
+	<h:form>
+
+		<!-- récup de l'id compte dans un champ caché -->
+		<h:inputHidden value="#{gestionCompte.compte.id_compte}" />
+		
+		
+		
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5"  class="formC2">
+			<f:facet name="header">
+				Formulaire de modification d'un compte
+			</f:facet>
+			
+			<h:outputLabel for="idTypeCompte" value="Type compte : " />
+			<h:inputText id="idTypeCompte" value="#{gestionCompte.compte.type_compte}" class="inputText" />
+		
+			<h:outputLabel for="idNumCompte" value="Numéro compte : " />
+			<h:inputText id="idNumCompte" value="#{gestionCompte.compte.num_compte}" class="inputText" />
+		
+			<h:outputLabel for="idSolde" value="Solde : " />
+			<h:inputText id="idSolde" value="#{gestionCompte.compte.solde}" class="inputText" />
+			
+			<h:outputLabel for="idTaux" value="Taux : " />
+			<h:inputText id="idTaux" value="#{gestionCompte.compte.taux}" class="inputText" />
+			
+			<h:outputLabel for="idDecouvert" value="Découvert : " />
+			<h:inputText id="idDecouvert" value="#{gestionCompte.compte.decouvert}" class="inputText" />
+			
+			<h:outputLabel for="idClientId" value="Client ID : " />
+			<h:inputText id="idClientId" value="#{gestionCompte.compte.client_id}" class="inputText" />
+			
+			
+			<f:facet name="footer">
+				<h:commandButton action="listCompte" actionListener="#{gestionCompte.modifierCompte}" value="Modifier" class="bt2_accueil" />
+			</f:facet>
+		
+		</h:panelGrid>
+	</h:form>
+	
+	
+	
+</body> 
+</html>
